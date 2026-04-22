@@ -53,3 +53,34 @@ module "ecr_app" {
 output "ecr_repository_url" {
   value = module.ecr_app.repository_url
 }
+
+
+# ------------------------------------------------------------------
+# EKS cluster
+# ------------------------------------------------------------------
+module "eks" {
+  source = "../../modules/eks"
+
+  project_name       = var.project_name
+  environment        = var.environment
+  kubernetes_version = "1.32"
+
+  vpc_id             = module.vpc.vpc_id
+  private_subnet_ids = module.vpc.private_subnet_ids
+
+  node_instance_types = ["t3.medium"]
+  node_desired_size   = 2
+  node_min_size       = 1
+  node_max_size       = 3
+
+  # Bootstrap admin: you (IAM user running Terraform)
+  admin_user_arn = "arn:aws:iam::373631301915:user/Inaam"
+}
+
+output "eks_cluster_name" {
+  value = module.eks.cluster_name
+}
+
+output "eks_cluster_endpoint" {
+  value = module.eks.cluster_endpoint
+}

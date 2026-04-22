@@ -33,8 +33,9 @@ resource "aws_subnet" "public" {
   map_public_ip_on_launch = true
 
   tags = {
-    Name = "${var.project_name}-${var.environment}-public-${count.index + 1}"
-    Tier = "public"
+    Name                     = "${var.project_name}-${var.environment}-public-${count.index + 1}"
+    Tier                     = "public"
+    "kubernetes.io/role/elb" = "1"
   }
 }
 
@@ -48,8 +49,9 @@ resource "aws_subnet" "private" {
   availability_zone = var.azs[count.index]
 
   tags = {
-    Name = "${var.project_name}-${var.environment}-private-${count.index + 1}"
-    Tier = "private"
+    Name                              = "${var.project_name}-${var.environment}-private-${count.index + 1}"
+    Tier                              = "private"
+    "kubernetes.io/role/internal-elb" = "1"
   }
 }
 
@@ -168,3 +170,5 @@ resource "aws_route_table_association" "db" {
   subnet_id      = aws_subnet.db[count.index].id
   route_table_id = aws_route_table.db[count.index].id
 }
+
+
