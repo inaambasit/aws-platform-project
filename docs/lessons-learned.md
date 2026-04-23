@@ -58,3 +58,15 @@
 - For a personal AWS account with Free Tier enforcement, default to Free Tier instance types unless I explicitly disable the guardrail.
 
 **Confidence level on topic:** Low (cluster never reached working state — deferred to next session).
+
+
+## 2026-04-23 (later) — Week 4 (Attempt 2): EKS WORKING — Flask pod responding
+
+**What worked:** Changed node_instance_types to ["t3.micro"] — Free Tier eligible. Terraform apply completed in ~18 min. Cluster healthy, 2 nodes Ready, kubectl working, Flask pod from ECR returned HTTP 200 on both `/` and `/health` via port-forward.
+
+**What I needed along the way:**
+- Upgraded AWS CLI from v2.0.30 to v2.34.34 — old version wrote apiVersion `client.authentication.k8s.io/v1alpha1` which kubectl v1.34 rejects.
+- Pod hostname in the response came back as the Kubernetes pod name (flask-app-7ff85bf976-bksp8), proving traffic actually hit the cluster not my laptop.
+- ECR kept between sessions — excluded from destroy by running `terraform state rm module.ecr_app`. State stays clean, image stays in AWS, rebuilt next time via apply or import.
+
+**Confidence level on topic:** Medium-High. Cluster worked first try after the fix. I understand the failure path from yesterday and the success path from today.
