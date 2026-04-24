@@ -8,7 +8,6 @@ metadata:
     alb.ingress.kubernetes.io/target-type: ip
     alb.ingress.kubernetes.io/healthcheck-path: /health
     alb.ingress.kubernetes.io/listen-ports: '[{"HTTP":80}]'
-    alb.ingress.kubernetes.io/subnets: "subnet-041bc9f98f3831efd,subnet-04aa9ba1e4e707653"
     alb.ingress.kubernetes.io/tags: "Project=aws-platform,Environment=dev,Owner=inaam,ManagedBy=kubernetes,CostCenter=platform-eng"
 spec:
   ingressClassName: alb
