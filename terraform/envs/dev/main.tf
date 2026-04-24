@@ -1,5 +1,5 @@
 # ------------------------------------------------------------------
-# Dev environment - calls the VPC module
+# Dev environment - calls the VPC module
 # ------------------------------------------------------------------
 module "vpc" {
   source = "../../modules/vpc"
@@ -20,7 +20,7 @@ module "vpc" {
 }
 
 # ------------------------------------------------------------------
-# Outputs - bubble up from the module for easy reference
+# Outputs - bubble up from the module for easy reference
 # ------------------------------------------------------------------
 output "vpc_id" {
   value = module.vpc.vpc_id
