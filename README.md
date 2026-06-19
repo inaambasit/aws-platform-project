@@ -1,6 +1,6 @@
 # AWS Platform Project
 
-Production-style AWS platform project showing Terraform, AWS networking, Docker, ECR, Amazon EKS, Kubernetes, ALB Ingress, IAM Roles for Service Accounts and FinOps-style cost control.
+Production-style AWS platform built end to end with Terraform and EKS, then analysed and cost-optimised as a FinOps case study: cost allocation, rate and usage optimisation, and a quantified saving on a live stack I built and ran myself.
 
 ## Recruiter Summary
 
@@ -10,9 +10,9 @@ It shows the full lifecycle of a cloud platform build: provisioning infrastructu
 
 ## Current Status
 
-Week 5 complete.
+Phase 1 (platform build) complete. Phase 2 (FinOps cost analysis) complete.
 
-A containerised application was deployed to Amazon EKS, exposed publicly through an AWS Application Load Balancer, validated with curl, documented, and then safely torn down.
+The platform was built, deployed to EKS behind an ALB, validated, then torn down. Phase 2 analysed the real cost of that stack, identified optimisation levers and quantified a saving. See docs/finops-savings-opportunity.md and docs/finops-operating-model.md.
 
 ## Architecture Overview
 
@@ -173,6 +173,10 @@ The project uses consistent tagging to support cost allocation and accountabilit
 
 This project is designed to show not only how infrastructure is built, but also how it is validated, documented and shut down responsibly.
 
+## FinOps Cost Analysis (Phase 2)
+
+Applied the FinOps Framework to the platform built in Phase 1. Inform: five-tag cost allocation, Cost Explorer analysis by service, CUR export to S3. Optimize: ranked savings backlog covering NAT gateway consolidation, spot for non-prod, node rightsizing, ECR lifecycle and untagged spend. Operate: budget alert set first, a tagging and cost allocation policy, and verified teardown at zero spend. Full detail in docs/finops-savings-opportunity.md and docs/finops-operating-model.md.
+
 ## CV-Ready Summary
 
-Built and documented a production-style AWS platform using Terraform, EKS, ECR, Kubernetes, Helm and ALB Ingress, including IRSA-based controller permissions, secure runtime settings, live endpoint validation and FinOps-focused teardown controls.
+Built a production-style AWS platform (Terraform, EKS, ECR, Kubernetes, Helm, ALB, IRSA, secure runtime), then ran a full FinOps analysis on it: cost allocation tagging, Cost Explorer and CUR analysis, and quantified optimisation levers (NAT gateway, node rightsizing, spot vs on-demand) to evidence accountable cloud spend management across Inform, Optimize and Operate.
